@@ -3,10 +3,10 @@ name: Run Cypress Tests
 on:
   push:
     branches:
-      - main  # Запуск при коммите в main
+      - main  
   pull_request:
     branches:
-      - main  # Запуск при PR в main
+      - main  
 
 jobs:
   cypress-run:
@@ -24,5 +24,9 @@ jobs:
       - name: Устанавливаем зависимости
         run: npm install
 
+      - name: Устанавливаем Cypress
+        run: npx cypress install  # <--- Добавили этот шаг
+
       - name: Запускаем Cypress (headless)
         run: npx cypress run
+
