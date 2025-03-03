@@ -1,0 +1,28 @@
+name: Run Cypress Tests
+
+on:
+  push:
+    branches:
+      - main  # Запуск при коммите в main
+  pull_request:
+    branches:
+      - main  # Запуск при PR в main
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout репозитория
+        uses: actions/checkout@v3
+
+      - name: Устанавливаем Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Устанавливаем зависимости
+        run: npm install
+
+      - name: Запускаем Cypress (headless)
+        run: npx cypress run
